@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <title>Forest Study Trail</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hud">
+        <div>
+          <p class="label">Round Stars</p>
+          <p class="value" id="starsValue">0</p>
+        </div>
+        <div>
+          <p class="label">Time</p>
+          <p class="value" id="timeValue">60</p>
+        </div>
+        <div>
+          <p class="label">Wave</p>
+          <p class="value" id="levelValue">1</p>
+        </div>
+        <div>
+          <p class="label">Player Level</p>
+          <p class="value" id="playerLevelValue">1</p>
+        </div>
+        <div>
+          <p class="label">Star Bank</p>
+          <p class="value" id="bankValue">0</p>
+        </div>
+      </section>
+
+      <section class="board-wrap">
+        <canvas id="gameCanvas" width="1024" height="576"></canvas>
+
+        <div class="overlay" id="startOverlay">
+          <div class="card">
+            <h1>Forest Study Trail</h1>
+            <p>
+              Move through the forest paths, collect every study snack and gold star, and stay away
+              from the silly forest goblins.
+            </p>
+            <p>
+              Unlock new animal friends by collecting stars and save your family progress
+              on this iPad.
+            </p>
+            <div class="selector-panel">
+              <p class="selector-title">Choose Your Animal</p>
+              <div class="hero-grid" id="heroGrid"></div>
+            </div>
+            <button id="startButton">Start Game</button>
+          </div>
+        </div>
+
+        <div class="overlay hidden" id="endOverlay">
+          <div class="card">
+            <h2>Round Complete</h2>
+            <p id="summaryText">You collected 0 stars.</p>
+            <div class="reward-grid">
+              <div class="reward-panel">
+                <span class="reward-label">Round stars earned</span>
+                <strong class="reward-value" id="roundEarnedValue">0</strong>
+              </div>
+              <div class="reward-panel">
+                <label for="bonusStars">Extra study bonus</label>
+                <input id="bonusStars" type="number" min="0" max="20" value="0" />
+              </div>
+              <div class="reward-panel">
+                <span class="reward-label">New star bank total</span>
+                <strong class="reward-value" id="nextBankValue">0</strong>
+              </div>
+            </div>
+            <button id="restartButton">Play Again</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="controls">
+        <div class="control-card">
+          <h3>Touch Controls</h3>
+          <p>Use the circle pad to move. On a computer, you can also use arrow keys or WASD.</p>
+        </div>
+        <div class="joystick-zone" id="joystickZone">
+          <div class="joystick-base">
+            <div class="joystick-knob" id="joystickKnob"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./game.js?v=3"></script>
+  </body>
+</html>
