@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <title>Family Game Hub</title>
+    <style>
+      :root {
+        --cream: #f7f2df;
+        --leaf: #7da267;
+        --forest: #45633f;
+        --ink: #263238;
+        --accent: #f07f5a;
+        --card: rgba(255, 255, 255, 0.82);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Trebuchet MS", "Avenir Next", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 24%),
+          linear-gradient(180deg, #f4ecd0, #d9ebc7);
+      }
+
+      .shell {
+        width: min(980px, 100%);
+        margin: 0 auto;
+        padding: 24px 16px 40px;
+      }
+
+      .hero,
+      .game-card {
+        background: var(--card);
+        border: 3px solid var(--forest);
+        border-radius: 28px;
+        box-shadow: 0 16px 32px rgba(38, 50, 56, 0.12);
+      }
+
+      .hero {
+        padding: 28px;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(2rem, 4vw, 3rem);
+      }
+
+      p {
+        line-height: 1.55;
+      }
+
+      .games {
+        margin-top: 18px;
+        display: grid;
+        gap: 16px;
+      }
+
+      .game-card {
+        padding: 18px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .thumb {
+        min-height: 140px;
+        border-radius: 20px;
+        background:
+          radial-gradient(circle at 18% 18%, #5d8a47 0 12%, transparent 13%),
+          radial-gradient(circle at 36% 22%, #5d8a47 0 12%, transparent 13%),
+          radial-gradient(circle at 62% 26%, #5d8a47 0 12%, transparent 13%),
+          linear-gradient(180deg, #d8efc4, #bcd89c 52%, #eedeaf 52%, #efe3c0);
+        border: 2px solid rgba(69, 99, 63, 0.25);
+      }
+
+      .meta {
+        display: grid;
+        gap: 8px;
+      }
+
+      .badge {
+        display: inline-block;
+        width: fit-content;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #ebf5e5;
+        color: var(--forest);
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      a.button {
+        display: inline-block;
+        width: fit-content;
+        padding: 12px 20px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--accent), #e85d75);
+        color: white;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      @media (max-width: 640px) {
+        .hero {
+          padding: 22px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <h1>Family Game Hub</h1>
+        <p>
+          A small collection of family-made games for iPad and browser play.
+          Start with the forest adventure below, and later we can add spelling,
+          math, or reading games here too.
+        </p>
+      </section>
+
+      <section class="games">
+        <article class="game-card">
+          <div class="thumb" aria-hidden="true"></div>
+          <div class="meta">
+            <span class="badge">Game 1</span>
+            <h2>Forest Study Trail</h2>
+            <p>
+              Walk the forest paths, collect study snacks and gold stars, and
+              avoid the forest goblins.
+            </p>
+            <a class="button" href="./forest-game/">Play Forest Study Trail</a>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
