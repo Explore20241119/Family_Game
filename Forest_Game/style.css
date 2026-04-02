@@ -456,7 +456,7 @@ input[type="number"] {
 
 .controls {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1fr;
   gap: 12px;
   padding: 12px;
   align-items: center;
@@ -464,34 +464,6 @@ input[type="number"] {
 
 .control-card {
   padding: 18px;
-}
-
-.joystick-zone {
-  display: grid;
-  place-items: center;
-  padding: 12px;
-  touch-action: none;
-}
-
-.joystick-base {
-  position: relative;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  border: 3px dashed var(--panel-border);
-  background: rgba(255, 255, 255, 0.55);
-}
-
-.joystick-knob {
-  position: absolute;
-  inset: 0;
-  width: 68px;
-  height: 68px;
-  margin: auto;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-soft), var(--accent));
-  border: 3px solid white;
-  box-shadow: 0 10px 20px rgba(35, 49, 66, 0.2);
 }
 
 @media (max-width: 860px) {
@@ -531,15 +503,5 @@ input[type="number"] {
   .card {
     width: min(400px, 100%);
     padding: 16px;
-  }
-
-  .joystick-base {
-    width: 132px;
-    height: 132px;
-  }
-
-  .joystick-knob {
-    width: 56px;
-    height: 56px;
   }
 }

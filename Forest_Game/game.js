@@ -14,8 +14,6 @@ const roundEarnedValue = document.getElementById("roundEarnedValue");
 const nextBankValue = document.getElementById("nextBankValue");
 const startButton = document.getElementById("startButton");
 const restartButton = document.getElementById("restartButton");
-const joystickZone = document.getElementById("joystickZone");
-const joystickKnob = document.getElementById("joystickKnob");
 const heroGrid = document.getElementById("heroGrid");
 
 const STORAGE_KEY = "forest-study-trail-save-v1";
@@ -118,8 +116,6 @@ game.player.speed = PLAYER_SPEED * initialHero.speed;
 
 const input = {
   queuedDirection: "left",
-  touchX: 0,
-  touchY: 0,
 };
 
 function createMover(gridX, gridY, radius) {
@@ -848,49 +844,33 @@ function setKeyState(code) {
   if (code === "ArrowDown" || code === "KeyS") setDirection("down");
 }
 
-function resetJoystick() {
-  input.touchX = 0;
-  input.touchY = 0;
-  joystickKnob.style.transform = "translate(0px, 0px)";
-}
+function handleBoardPointer(clientX, clientY) {
+  const bounds = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / bounds.width;
+  const scaleY = canvas.height / bounds.height;
+  const boardX = (clientX - bounds.left) * scaleX;
+  const boardY = (clientY - bounds.top) * scaleY;
+  const dx = boardX - game.player.x;
+  const dy = boardY - game.player.y;
 
-function handleJoystick(clientX, clientY) {
-  const bounds = joystickZone.getBoundingClientRect();
-  const centerX = bounds.left + bounds.width / 2;
-  const centerY = bounds.top + bounds.height / 2;
-  const dx = clientX - centerX;
-  const dy = clientY - centerY;
-  const distance = Math.min(Math.hypot(dx, dy), JOYSTICK_LIMIT);
-  const angle = Math.atan2(dy, dx);
-  const knobX = Math.cos(angle) * distance;
-  const knobY = Math.sin(angle) * distance;
-
-  input.touchX = knobX / JOYSTICK_LIMIT;
-  input.touchY = knobY / JOYSTICK_LIMIT;
-  joystickKnob.style.transform = `translate(${knobX}px, ${knobY}px)`;
-
-  if (Math.abs(knobX) > Math.abs(knobY)) {
-    setDirection(knobX < 0 ? "left" : "right");
+  if (Math.abs(dx) > Math.abs(dy)) {
+    setDirection(dx < 0 ? "left" : "right");
   } else {
-    setDirection(knobY < 0 ? "up" : "down");
+    setDirection(dy < 0 ? "up" : "down");
   }
 }
 
 document.addEventListener("keydown", (event) => setKeyState(event.code));
 
-joystickZone.addEventListener("pointerdown", (event) => {
-  joystickZone.setPointerCapture(event.pointerId);
-  handleJoystick(event.clientX, event.clientY);
+canvas.addEventListener("pointerdown", (event) => {
+  handleBoardPointer(event.clientX, event.clientY);
 });
 
-joystickZone.addEventListener("pointermove", (event) => {
-  if (event.pressure > 0) {
-    handleJoystick(event.clientX, event.clientY);
+canvas.addEventListener("pointermove", (event) => {
+  if (event.pressure > 0 || event.buttons === 1) {
+    handleBoardPointer(event.clientX, event.clientY);
   }
 });
-
-joystickZone.addEventListener("pointerup", resetJoystick);
-joystickZone.addEventListener("pointercancel", resetJoystick);
 
 startButton.addEventListener("click", startRound);
 restartButton.addEventListener("click", () => {
